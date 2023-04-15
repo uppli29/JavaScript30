@@ -59,6 +59,23 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
+document.addEventListener("keypress",(event)=>{
+  let audio = document.querySelector(`audio[data-key="${event.keyCode}"]`)
+  let key = document.querySelector(`div[data-key="${event.keyCode}"]`)
+  if(!audio) return;
+  audio.currentTime=0;
+  audio.play()
+  key.classList.add("playing")
+})
+
+// for removing border
+let keys = document.querySelectorAll(".key");
+keys.forEach(key=>key.addEventListener("transitionend",remomveTransition))
+function remomveTransition(e){
+  if(e.propertyName!='transform') return;
+  console.log(this)
+  this.classList.remove("playing")
+}
 
 </script>
 
